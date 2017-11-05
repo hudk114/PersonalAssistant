@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Work from '@/components/work/work.vue';
-import Live from '@/components/live/live.vue';
+import LiveCharge from '@/components/live/charge.vue';
+import LiveProject from '@/components/live/project.vue';
+import Manage from '@/components/manage/manage.vue';
 
 Vue.use(Router);
 
@@ -16,8 +18,16 @@ export default new Router({
             component: Work,
         },
         {
-            path: '/live',
-            component: Live,
+            path: '/live/charge',
+            component: LiveCharge,
+        },
+        {
+            path: '/live/project',
+            component: LiveProject,
+        },
+        {
+            path: '/manage',
+            component: Manage,
         },
     ]
 });

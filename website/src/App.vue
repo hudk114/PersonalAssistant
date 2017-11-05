@@ -5,8 +5,11 @@
             Personal Assistant
         </header>
         <div class="content">
-            <left-sidebar>
-            </left-sidebar>
+            <sidebar>
+                <sidebar-item v-for="item in sidebarData"
+                    :value="item">
+                </sidebar-item>
+            </sidebar>
             <router-view></router-view>
         </div>
         <footer class="footer">
@@ -18,15 +21,40 @@
 </template>
 
 <script>
-    import LeftSideBar from '@/components/left-sidebar/left-sidebar';
+    import SideBar from '@/h-ui/side-bar';
+    import SideBarItem from '@/h-ui/side-bar-item';
+    // import LeftSideBar from '@/components/left-sidebar/left-sidebar';
 
     export default {
         components: {
-            'left-sidebar': LeftSideBar,
+            'sidebar': SideBar,
+            'sidebar-item': SideBarItem,
         },
         data() {
             return {
-
+                sidebarData: [
+                    {
+                        name: '工作',
+                        link: '/work',
+                    },
+                    {
+                        name: '生活',
+                        linkList: [
+                            {
+                                name: '记账',
+                                link: '/live/charge',
+                            },
+                            {
+                                name: '计划',
+                                link: '/live/project',
+                            },
+                        ],
+                    },
+                    {
+                        name: '管理',
+                        link: '/manage',
+                    },
+                ],
             };
         },
         name: 'index',

@@ -1,6 +1,6 @@
 <template>
     <div>
-        live
+        manage
     </div>
 </template>
 
