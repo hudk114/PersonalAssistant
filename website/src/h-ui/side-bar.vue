@@ -20,5 +20,7 @@
         width: 200px;
         height: 100%;
         background-color: #eee;
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 </style>

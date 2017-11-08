@@ -1,12 +1,14 @@
 <template>
     <div id="app"
-        class="app">
+        class="app"
+        :style="{ height: mHeight + 'px' }">
         <header class="header">
             Personal Assistant
         </header>
         <div class="content">
             <sidebar>
                 <sidebar-item v-for="item in sidebarData"
+                    :key="item.toString()"
                     :value="item">
                 </sidebar-item>
             </sidebar>
@@ -27,8 +29,11 @@
 
     export default {
         components: {
-            'sidebar': SideBar,
+            sidebar: SideBar,
             'sidebar-item': SideBarItem,
+        },
+        beforeMount() {
+            this.bind();
         },
         data() {
             return {
@@ -55,7 +60,15 @@
                         link: '/manage',
                     },
                 ],
+                mHeight: document.documentElement.clientHeight,
             };
+        },
+        methods: {
+            bind() {
+                window.onresize = () => {
+                    this.mHeight = document.documentElement.clientHeight;
+                };
+            },
         },
         name: 'index',
     };
@@ -66,6 +79,9 @@
         width: 100%;
         height: 100%;
         position: relative;
+    }
+
+    .content {
     }
 
     .header {
@@ -95,5 +111,6 @@
     body {
         padding: 0;
         margin: 0;
+        font-size: 0;
     }
 </style>
