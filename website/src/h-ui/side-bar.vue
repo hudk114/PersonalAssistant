@@ -17,10 +17,11 @@
 <style scoped>
     .h-ui-sidebar {
         float: left;
-        width: 200px;
         height: 100%;
-        background-color: #eee;
-        font-size: 1rem;
-        line-height: 1.5rem;
+        width: 15rem;
+        background-color: #eff2f7;
+        color: #475669;
+        font-size: 1.2rem;
+        line-height: 3.3rem;
     }
 </style>

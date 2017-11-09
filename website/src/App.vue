@@ -5,14 +5,14 @@
         <header class="header">
             Personal Assistant
         </header>
-        <div class="content">
+        <div class="content-outter">
             <sidebar>
                 <sidebar-item v-for="item in sidebarData"
                     :key="item.toString()"
                     :value="item">
                 </sidebar-item>
             </sidebar>
-            <router-view></router-view>
+            <router-view class="content"></router-view>
         </div>
         <footer class="footer">
             <span>
@@ -82,13 +82,18 @@
     }
 
     .content {
+        font-size: 1rem;
+        margin-left: 15rem;
     }
 
     .header {
         width: 100%;
-        font-size: 1.5rem;
-        line-height: 3rem;
-        height: 2rem;
+        font-size: 2.2rem;
+        line-height: 5rem;
+        height: 5rem;
+        background: #334055;
+        color: #fff;
+        padding-left: 2rem;
         border-bottom: 1px solid black;
     }
 

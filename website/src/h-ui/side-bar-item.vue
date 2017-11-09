@@ -51,4 +51,14 @@
 </script>
 
 <style scoped>
+    .h-ui-sidebar-item-outter {
+        width: auto;
+        padding-left: 3rem;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .h-ui-sidebar-item-outter:hover {
+        background-color: #d3dce6;
+        cursor: pointer;
+    }
 </style>
