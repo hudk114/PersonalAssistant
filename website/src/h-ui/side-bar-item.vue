@@ -2,14 +2,15 @@
     <div class="h-ui-sidebar-item-outter">
         <div v-if="itemHasList"
             class="h-ui-item">
-            <div class=""
+            <div class="h-ui-item-text"
                 @click="handleListShow">
                 {{ value.name }}
             </div>
         </div>
         <div v-else
             class="h-ui-item_no-list">
-            <router-link :to="value.link">
+            <router-link class="h-ui-item-text"
+                :to="value.link">
                 {{ value.name }}
             </router-link>
         </div>
@@ -73,6 +74,16 @@
         background-color: #e5e9f2;
     }
     .h-ui-item_second:hover {
-        background-color: #
+        background-color: #d3dce6;
     }
+
+    .h-ui-item-text {
+        color: #333;
+        text-decoration: none;
+    }
+    .h-ui-item_second-text {
+        color: #666;
+        text-decoration: none;
+    }
+
 </style>
