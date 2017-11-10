@@ -95,6 +95,7 @@
         color: #fff;
         padding-left: 2rem;
         border-bottom: 1px solid black;
+        user-select: none;
     }
 
     .footer {

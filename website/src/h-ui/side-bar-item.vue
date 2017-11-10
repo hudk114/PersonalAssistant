@@ -1,9 +1,9 @@
 <template>
     <div class="h-ui-sidebar-item-outter">
         <div v-if="itemHasList"
-            class="h-ui-item">
-            <div class="h-ui-item-text"
-                @click="handleListShow">
+            class="h-ui-item"
+            @click="handleListShow">
+            <div class="h-ui-item-text">
                 {{ value.name }}
             </div>
         </div>
@@ -19,7 +19,8 @@
                 class="h-ui-item_second"
                 :key="item.toString()"
                 v-for="item in value.linkList">
-                <router-link :to="item.link">
+                <router-link :to="item.link"
+                    class="h-ui-item_second-text">
                     {{ item.name }}
                 </router-link>
             </div>
@@ -28,7 +29,6 @@
 </template>
 
 <script>
-
     export default {
         props: {
             value: {
@@ -60,7 +60,6 @@
 
     .h-ui-item_no-list,
     .h-ui-item {
-        padding-left: 3rem;
         border-bottom: 1px solid #e1e1e1;
     }
     .h-ui-item_no-list:hover,
@@ -70,7 +69,6 @@
     }
 
     .h-ui-item_second {
-        padding-left: 4rem;
         background-color: #e5e9f2;
     }
     .h-ui-item_second:hover {
@@ -78,12 +76,18 @@
     }
 
     .h-ui-item-text {
+        display: block;
+        padding-left: 3rem;
         color: #333;
         text-decoration: none;
     }
     .h-ui-item_second-text {
+        display: block;
+        padding-left: 4rem;
         color: #666;
         text-decoration: none;
     }
-
+    .h-ui-item_second-text:hover {
+        color: #20a0ff;
+    }
 </style>
