@@ -13,14 +13,16 @@
                 {{ value.name }}
             </router-link>
         </div>
-        <div v-if="itemHasList"
-            v-show="listShow"
-            class="h-ui-item_second"
-            v-for="item in value.linkList">
-            <router-link :to="item.link">
-                {{ item.name }}
-            </router-link>
-        </div>
+        <template v-if="itemHasList">
+            <div v-show="listShow"
+                class="h-ui-item_second"
+                :key="item.toString()"
+                v-for="item in value.linkList">
+                <router-link :to="item.link">
+                    {{ item.name }}
+                </router-link>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -53,12 +55,24 @@
 <style scoped>
     .h-ui-sidebar-item-outter {
         width: auto;
+    }
+
+    .h-ui-item_no-list,
+    .h-ui-item {
         padding-left: 3rem;
         border-bottom: 1px solid #e1e1e1;
     }
-
-    .h-ui-sidebar-item-outter:hover {
+    .h-ui-item_no-list:hover,
+    .h-ui-item:hover {
         background-color: #d3dce6;
         cursor: pointer;
+    }
+
+    .h-ui-item_second {
+        padding-left: 4rem;
+        background-color: #e5e9f2;
+    }
+    .h-ui-item_second:hover {
+        background-color: #
     }
 </style>
