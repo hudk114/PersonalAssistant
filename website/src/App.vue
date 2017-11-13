@@ -7,7 +7,7 @@
         </header>
         <div class="content-outter">
             <sidebar>
-                <sidebar-item v-for="item in sidebarData"
+                <sidebar-item v-for="item in sidebar"
                     :key="item.toString()"
                     :value="item">
                 </sidebar-item>
@@ -25,7 +25,8 @@
 <script>
     import SideBar from '@/h-ui/side-bar';
     import SideBarItem from '@/h-ui/side-bar-item';
-    // import LeftSideBar from '@/components/left-sidebar/left-sidebar';
+
+    import SideBarData from '@/config/sidebar';
 
     export default {
         components: {
@@ -71,6 +72,11 @@
             },
         },
         name: 'index',
+        computed: {
+            sidebar() {
+                return SideBarData;
+            },
+        },
     };
 </script>
 

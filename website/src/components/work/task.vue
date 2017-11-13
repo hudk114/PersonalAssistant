@@ -1,8 +1,6 @@
 <template>
     <div>
-        charge
-
-        
+        task
     </div>
 </template>
 
@@ -11,8 +9,11 @@
     export default {
         data() {
             return {
-
             };
+        },
+        methods: {
+        },
+        computed: {
         },
     };
 </script>

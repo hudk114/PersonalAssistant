@@ -1,0 +1,32 @@
+[
+    {
+        "name": "工作",
+        "linkList": [
+            {
+                "name": "工时",
+                "link": "/work/time"
+            },
+            {
+                "name": "计划",
+                "link": "/work/task"
+            }
+        ]
+    },
+    {
+        "name": "生活",
+        "linkList": [
+            {
+                "name": "记账",
+                "link": "/live/charge"
+            },
+            {
+                "name": "计划",
+                "link": "/live/project"
+            }
+        ]
+    },
+    {
+        "name": "管理",
+        "link": "/manage"
+    }
+]

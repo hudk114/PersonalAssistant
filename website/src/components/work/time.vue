@@ -1,6 +1,6 @@
 <template>
     <div>
-        work
+        time
         <div class="input_content">
             <el-time-picker
                 is-range
@@ -27,7 +27,7 @@
         },
         methods: {
             save() {
-                
+
             },
         },
         computed: {

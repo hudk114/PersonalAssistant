@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Work from '@/components/work/work.vue';
+import Time from '@/components/work/time.vue';
+import Task from '@/components/work/task.vue';
 import LiveCharge from '@/components/live/charge.vue';
 import LiveProject from '@/components/live/project.vue';
 import Manage from '@/components/manage/manage.vue';
@@ -11,11 +12,15 @@ export default new Router({
     routes: [
         {
             path: '/',
-            component: Work,
+            component: Time,
         },
         {
-            path: '/work',
-            component: Work,
+            path: '/work/time',
+            component: Time,
+        },
+        {
+            path: '/work/task',
+            component: Task,
         },
         {
             path: '/live/charge',
