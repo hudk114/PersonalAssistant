@@ -89,7 +89,7 @@
 
     .content {
         font-size: 1rem;
-        margin-left: 15rem;
+        display: inline-block;
     }
 
     .header {

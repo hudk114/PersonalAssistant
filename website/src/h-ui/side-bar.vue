@@ -16,7 +16,8 @@
 
 <style scoped>
     .h-ui-sidebar {
-        float: left;
+        vertical-align: top;
+        display: inline-block;
         height: 100%;
         width: 15rem;
         background-color: #eff2f7;
