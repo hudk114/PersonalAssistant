@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="">
+        <div class="charge-moder-outter">
             <el-form :model="chargeModel"
                 :rules="chargeModelRule"
                 ref="chargeModel"
@@ -53,20 +53,33 @@
             </el-form>
 
             <el-button type="primary"
-                @click="save"
+                @click="addChargeRecord"
+                :disabled="saveDisabled"
                 plain>保存
             </el-button>
         </div>
 
         <div class="">
-
+            <ui-mult-task-pro-bar
+                :list="list"
+                :total="totalNum"
+                @click="handleClick"
+                label-width="35px"
+                name="吃饭">
+            </ui-mult-task-pro-bar>
         </div>
     </div>
 </template>
 
 <script>
+    import paramsFunc from '@lib/params-func';
+    import MulTaskProBar from '@ui/multi-task-progress-bar/multi-task-progress-bar';
 
     export default {
+        name: 'charge',
+        components: {
+            'ui-mult-task-pro-bar': MulTaskProBar,
+        },
         data() {
             const datePickerOptions = {
                 disabledDate(time) {
@@ -83,11 +96,53 @@
             };
 
             const validateTime = function validateTime(rule, value, callback) {
+                paramsFunc.judgeEmpty(value) ? callback('请选择时间') : callback();
+            };
+            const validateType = function validateType(rule, value, callback) {
+                paramsFunc.judgeEmpty(value) ? callback('请选择类型') : callback();
+            };
+            const validateAmount = function validateAmount(rule, value, callback) {
+                if (paramsFunc.judgeEmpty(value)) {
+                    callback('请输入金额');
+                    return;
+                }
+                if (!/^(([1-9][0-9]{0,9}(\.[0-9]{1,2})?)|(0\.(([0-9][1-9])|[1-9]0?)))$/.test(value.toString())) {
+                    callback('请输入有效金额，整数部分最多十位，小数点最多两位');
+                    return;
+                }
                 callback();
             };
 
             return {
                 datePickerOptions,
+                list: [
+                    {
+                        name: '吃饭',
+                        number: 135,
+                        url: '/eat',
+                    },
+                    {
+                        name: '吃菜',
+                        number: 153,
+                        url: '/vegetable',
+                    },
+                    {
+                        name: '吃鸡',
+                        number: 223,
+                        url: '/eat',
+                    },
+                    {
+                        name: '吃鸭',
+                        number: 333,
+                        url: '/duck',
+                    },
+                    {
+                        name: '吃鹅',
+                        number: 203,
+                        url: '/goose',
+                    },
+                ],
+                totalNum: 1000,
                 chargeModel: {
                     chargeTime: '',
                     firstType: '',
@@ -97,41 +152,69 @@
                 },
                 chargeModelRule: {
                     chargeTime: [
-                        { required: true, validator: validateTime,  },
+                        { required: true, validator: validateTime },
                     ],
+                    firstType: [
+                        { required: true, validator: validateType },
+                    ],
+                    secondeType: [
+                        { required: true, validator: validateType },
+                    ],
+                    amount: [
+                        { required: true, validator: validateAmount, trigger: 'input' },
+                    ]
                 },
+                saveDisabled: false,
             };
         },
         methods: {
-            save() {
-                console.log(this.chargeModel);
+            addChargeRecord() {
+                // prevent double click
+                this.saveDisabled = true;
+                this.$store.commit('status/triggerBodyLoading');
+                this.$refs.chargeModel.validate(valid => {
+                    if (valid) {
+                        this.$store.dispatch('charge/addChargeRecord', {
+                            chargeRecord: this.chargeModel,
+                            fn: () => {
+                                this.$notify({
+                                    title: '保存成功',
+                                    message: '保存成功',
+                                    type: 'success',
+                                });
+                                this.$store.commit('status/cancelBodyLoading');
+                                this.saveDisabled = false;
+                            },
+                            fnErr: err => {
+                                this.$notify.error({
+                                    title: '保存失败',
+                                    message: err.msg,
+                                });
+                                this.$store.commit('status/cancelBodyLoading');
+                                this.saveDisabled = false;
+                            },
+                        });
+                    } else {
+                        this.$store.commit('status/cancelBodyLoading');
+                        this.saveDisabled = false;
+                    }
+                });
+            },
+            handleClick({ val, name }) {
+                console.log(name);
+                console.log(val);
             },
         },
         computed: {
             firstTypeList() {
-                return [
-                    {
-                        key: 0,
-                        value: '吃药',
-                    },
-                    {
-                        key: 1,
-                        value: '吃菜',
-                    },
-                ];
+                return this.$store.state.enumData.chargeFirstType;
             },
             secondTypeList() {
-                return [
-                    {
-                        key: 0,
-                        value: '吃鸡',
-                    },
-                ];
+                return this.$store.getters['enumData/getSecondType'](this.chargeModel.firstType);
             },
         },
     };
 </script>
 
 <style scoped>
-
 </style>

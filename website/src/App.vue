@@ -1,7 +1,8 @@
 <template>
     <div id="app"
         class="app"
-        :style="{ height: mHeight + 'px' }">
+        :style="{ height: mHeight + 'px' }"
+        v-loading="loadingFlag">
         <header class="header">
             Personal Assistant
         </header>
@@ -75,6 +76,9 @@
         computed: {
             sidebar() {
                 return SideBarData;
+            },
+            loadingFlag() {
+                return this.$store.state.status.bodyLoading;
             },
         },
     };
